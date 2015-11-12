@@ -24,22 +24,37 @@ function draw(){
 	ctx.fill();
 
 	//now lets draw a feather!
-	ctx.beginPath();
+	//set the color to fill the feature
+	ctx.fillStyle = "#B2130D";
+	ctx.beginPath(); //we're going to draw a feather using a pen
 	ctx.moveTo(80, 180);
 	ctx.lineTo(60,80);
 	ctx.arc(50, 80, 10, 0, Math.PI, true);
 	ctx.lineTo(80,180);
-	ctx.stroke();
+	ctx.fill();
 
+	var colors = ['#B2501E',"#32B0B2","#69B232","#B2B000"]
+
+	//we're gonna save the canvas state since we're moving it around
+	ctx.save();
 	//now let's draw the next four using a loop
 	for(var i = 1; i < 4; i++){
+		ctx.fillStyle = colors[i]; //choose the color for the feather
+		//rotate the feather to give it a cool effect
+		ctx.rotate((Math.PI/180)*(10));
+		ctx.translate(50,-(10+3*i));
 		ctx.beginPath();
-		ctx.moveTo(80 + 20*i, 180);
-		ctx.lineTo(60 + 20*i,80);
-		ctx.arc(50 + 20*i, 80, 10, 0, Math.PI, true);
-		ctx.lineTo(80 + 20*i,180);
-		ctx.stroke();
+		ctx.moveTo(80, 180);
+		ctx.lineTo(60,80);
+		ctx.arc(50, 80, 10, 0, Math.PI, true);
+		ctx.lineTo(80,180);
+		ctx.fill();
 	}
 
+	//restore the canvas state after all those wacky transformations
+	ctx.restore();
+
+	//now let's draw the turkey's neck and stuff!
+	
 
 }
