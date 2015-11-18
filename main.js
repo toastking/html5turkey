@@ -53,7 +53,7 @@ function draw(){
 
 	//restore the canvas state after all those wacky transformations
 	ctx.restore();
-	
+
 	//now let's draw the turkey's neck and eyes!
 	//we're going to use two lines and arc
 	//the arc is a Bezier curve
@@ -77,6 +77,20 @@ function draw(){
 	ctx.restore();
 
 	//fun fact, fill can automatically close the path!
+	ctx.fill();
+
+	//now we will draw the gizzard 
+	ctx.fillStyle = "#B22003";
+	ctx.beginPath();
+	ctx.moveTo(19,113);
+	ctx.lineTo(19,124);
+	ctx.arc(22,124,2.5, Math.PI, Math.PI*2, true);
+	ctx.fill();
+
+	//to finish it off let's draw the eyes!
+	ctx.fillStyle = "#000000";
+	ctx.beginPath();
+	ctx.arc(29,107,2,0,Math.PI*2,false);
 	ctx.fill();
 
 

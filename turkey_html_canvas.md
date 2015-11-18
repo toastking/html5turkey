@@ -156,6 +156,52 @@ Ok, so we have our colors for our feathers, we have the code to make our feather
 	
 {% endhighlight %}
 
+## Drawing the Neck
+When my cousin was very little she was very confused by turtleneck sweaters.  She would always get flustered and say, "turtles have no necks!".  Turkeys have necks though, so lets draw one.
+
+I did some fancy math using triangles and stuff to determine what coordinates and angles we need to use.  *Remember! All the angles in Javascript are in radians!*  We need to start around the midpoint of the turkey's body.  Doing some math with the radius and the center of the circle I chose this to be (65,185).  We move our pen to this area and start drawing.  Like our feathers, our neck and head will consist of two lines and a half circles (arc) at 45 degrees.  We'l also draw the gizzard a similar way, drawing a line straight down from the neck and then drawing a half circle (with a start angle of 180 degrees and and end angle of 180 degrees).
+
+**Now is a good time to talk about a weird thing with drawing paths.**  Paths have *main paths* and *sub paths*.  Every time you use *moveTo()* you make a new subpath.  This can mess with the *fill()* function since it tries to automatically close the path (similar to the closePath() function).  It's best not to use moveTo() that often.  It's better to use moveTo() when you call beginPath() and then use lineTo() and other functions from there on out until the path is done.
+
+Here's the cool math and the code we used to make the neck (*warning: it uses lots of trigonometry*):
+{% highlight js %}
+//now let's draw the turkey's neck and eyes!
+	//we're going to use two lines and arc
+	//the arc is a Bezier curve
+	ctx.fillStyle = "rgb(127,108,56)";
+	ctx.beginPath();
+	//we did some fancy trig to get these numbers
+	ctx.moveTo(65,185);
+	ctx.lineTo(34, 100);
+	//let's make the head of the turkey an arc
+	ctx.save();
+	//rotate the canvas
+	var k = Math.sin((Math.PI/180) * 45) *10; // the constant value we are using
+	var x = 34 - k;
+	var y = 100 + k;
+	ctx.arc(x, y, 10, (Math.PI/180)*-45, (Math.PI/180)*135, true);
+	//now we draw the other line to finish the neck
+	k = Math.sin((Math.PI/180) * 45) *20;
+	ctx.translate(-k,k); //use translate so the line is the came
+	//do this little trick to get the right coordinates without calculating them
+	ctx.lineTo(65,185);
+	ctx.restore();
+
+	//fun fact, fill can automatically close the path!
+	ctx.fill();
+
+	//now we will draw the gizzard 
+	ctx.fillStyle = "#B22003";
+	ctx.beginPath();
+	ctx.moveTo(19,113);
+	ctx.lineTo(19,124);
+	ctx.arc(22,124,2.5, Math.PI, Math.PI*2, true);
+	ctx.fill();
+	
+{% endhighlight %}
+
+## Look, Look with Your Special Eyes!
+There is just one last thing we need to add to make our turkey complete.  Eyes!  This should be easy by now, it's just a circle in the middle of it's head!  
 
 
 
