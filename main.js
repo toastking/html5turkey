@@ -8,7 +8,7 @@ function draw(){
 		var ctx = canvas.getContext("2d");
 	}
 
-	//once we set up our canvas and graphics context objext we can start drawing!
+	//once we set up our canvas and graphics context object we can start drawing!
 	//first we'll draw the body of the turkey
 	ctx.fillStyle = "rgb(127,108,56)";
 	var x = 100; // x coordinate
@@ -38,11 +38,11 @@ function draw(){
 	//we're gonna save the canvas state since we're moving it around
 	ctx.save();
 	//now let's draw the next four using a loop
-	for(var i = 1; i < 4; i++){
+	for(var i = 1; i < 9; i++){
 		ctx.fillStyle = colors[i]; //choose the color for the feather
 		//rotate the feather to give it a cool effect
-		ctx.rotate((Math.PI/180)*(10));
-		ctx.translate(50,-(10+3*i));
+		ctx.rotate((Math.PI/180)*(5));
+		ctx.translate(25,-5);
 		ctx.beginPath();
 		ctx.moveTo(80, 180);
 		ctx.lineTo(60,80);
@@ -53,8 +53,31 @@ function draw(){
 
 	//restore the canvas state after all those wacky transformations
 	ctx.restore();
-
-	//now let's draw the turkey's neck and stuff!
 	
+	//now let's draw the turkey's neck and eyes!
+	//we're going to use two lines and arc
+	//the arc is a Bezier curve
+	ctx.fillStyle = "rgb(127,108,56)";
+	ctx.beginPath();
+	//we did some fancy trig to get these numbers
+	ctx.moveTo(65,185);
+	ctx.lineTo(34, 100);
+	//let's make the head of the turkey an arc
+	ctx.save();
+	//rotate the canvas
+	var k = Math.sin((Math.PI/180) * 45) *10; // the constant value we are using
+	var x = 34 - k;
+	var y = 100 + k;
+	ctx.arc(x, y, 10, (Math.PI/180)*-45, (Math.PI/180)*135, true);
+	//now we draw the other line to finish the neck
+	k = Math.sin((Math.PI/180) * 45) *20;
+	ctx.translate(-k,k); //use translate so the line is the came
+	//do this little trick to get the right coordinates without calculating them
+	ctx.lineTo(65,185);
+	ctx.restore();
+
+	//fun fact, fill can automatically close the path!
+	ctx.fill();
+
 
 }
