@@ -100,6 +100,8 @@ Now we'll draw the circle.  To do that we'll use the [arc() function](https://de
 
 And voila! We have a nice turkey body (almost as good as dad bod).
 
+![The body of the turkey](./img/body.png)
+
 ## Drawing the feathers
 Ok so we have a body, but what else to turkeys need? That's right, feathers!  
 
@@ -133,6 +135,9 @@ We should also talk about the *save()* and *restore()* functions.  Save() stores
 
 Ok, so we have our colors for our feathers, we have the code to make our feathers, we know how rotating works, let's make our loop!
 
+![turkey with feathers](img/feathers.png)
+
+
 {% highlight js %}
 
 	//we're gonna save the canvas state since we're moving it around
@@ -161,9 +166,14 @@ When my cousin was very little she was very confused by turtleneck sweaters.  Sh
 
 I did some fancy math using triangles and stuff to determine what coordinates and angles we need to use.  *Remember! All the angles in Javascript are in radians!*  We need to start around the midpoint of the turkey's body.  Doing some math with the radius and the center of the circle I chose this to be (65,185).  We move our pen to this area and start drawing.  Like our feathers, our neck and head will consist of two lines and a half circles (arc) at 45 degrees.  We'l also draw the gizzard a similar way, drawing a line straight down from the neck and then drawing a half circle (with a start angle of 180 degrees and and end angle of 180 degrees).
 
+![turkey with neck](img/neck.png)
+
 **Now is a good time to talk about a weird thing with drawing paths.**  Paths have *main paths* and *sub paths*.  Every time you use *moveTo()* you make a new subpath.  This can mess with the *fill()* function since it tries to automatically close the path (similar to the closePath() function).  It's best not to use moveTo() that often.  It's better to use moveTo() when you call beginPath() and then use lineTo() and other functions from there on out until the path is done.
 
 Here's the cool math and the code we used to make the neck (*warning: it uses lots of trigonometry*):
+
+![the cool math we use to make the neck](img/math.PNG)
+
 {% highlight js %}
 //now let's draw the turkey's neck and eyes!
 	//we're going to use two lines and arc
@@ -202,6 +212,9 @@ Here's the cool math and the code we used to make the neck (*warning: it uses lo
 
 ## The Beak
 The beak is a very important part of the turkey.  It allows it to utter it's beautiful bird calls, also called "the gobble".  We're going to make our beak an orange triangle on the end of the head of our turkey.  We'll use to lines and then fill() to end the path automatically.  I started the path for the beak a little above where we made the part that goes under the neck.
+
+![turkey with a beak](img/eyes.png)
+
 {% highlight js %}
 //let's draw the beak!
 	ctx.fillStyle = "#FFDE00";
@@ -222,6 +235,11 @@ There is just one last thing we need to add to make our turkey complete.  Eyes! 
 	ctx.fill();
 {% endhighlight %}
 
+**And with that we are finished! It's it beautiful?**
+
+![the finished turkey](img/finished.png)
+
+*You can see the finished code at* [github.com/toastking/html5turkey](https://github.com/toastking/html5turkey)! 
 
 # What next?
 - [Animate it!](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Basic_animations)
