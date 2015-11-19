@@ -33,7 +33,7 @@ function draw(){
 	ctx.lineTo(80,180);
 	ctx.fill();
 
-	var colors = ['#B2501E',"#32B0B2","#69B232","#B2B000"]
+	var colors = ['#B2501E',"#14B274","#32B0B2","#69B232","#FFF000","#D51EFF","#96FF00","#FF0500","#FF3500"]
 
 	//we're gonna save the canvas state since we're moving it around
 	ctx.save();
@@ -71,7 +71,7 @@ function draw(){
 	ctx.arc(x, y, 10, (Math.PI/180)*-45, (Math.PI/180)*135, true);
 	//now we draw the other line to finish the neck
 	k = Math.sin((Math.PI/180) * 45) *20;
-	ctx.translate(-k,k); //use translate so the line is the came
+	ctx.translate(-k,k); //use translate so the line is the same
 	//do this little trick to get the right coordinates without calculating them
 	ctx.lineTo(65,185);
 	ctx.restore();
@@ -87,11 +87,17 @@ function draw(){
 	ctx.arc(22,124,2.5, Math.PI, Math.PI*2, true);
 	ctx.fill();
 
+	//let's draw the beak!
+	ctx.fillStyle = "#FFDE00";
+	ctx.beginPath();
+	ctx.moveTo(17,110);
+	ctx.lineTo(10,118);
+	ctx.lineTo(25,118);
+	ctx.fill();
+
 	//to finish it off let's draw the eyes!
 	ctx.fillStyle = "#000000";
 	ctx.beginPath();
 	ctx.arc(29,107,2,0,Math.PI*2,false);
 	ctx.fill();
-
-
 }

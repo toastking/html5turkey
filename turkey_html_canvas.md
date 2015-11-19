@@ -182,7 +182,7 @@ Here's the cool math and the code we used to make the neck (*warning: it uses lo
 	ctx.arc(x, y, 10, (Math.PI/180)*-45, (Math.PI/180)*135, true);
 	//now we draw the other line to finish the neck
 	k = Math.sin((Math.PI/180) * 45) *20;
-	ctx.translate(-k,k); //use translate so the line is the came
+	ctx.translate(-k,k); //use translate so the line is the same
 	//do this little trick to get the right coordinates without calculating them
 	ctx.lineTo(65,185);
 	ctx.restore();
@@ -200,9 +200,34 @@ Here's the cool math and the code we used to make the neck (*warning: it uses lo
 	
 {% endhighlight %}
 
+## The Beak
+The beak is a very important part of the turkey.  It allows it to utter it's beautiful bird calls, also called "the gobble".  We're going to make our beak an orange triangle on the end of the head of our turkey.  We'll use to lines and then fill() to end the path automatically.  I started the path for the beak a little above where we made the part that goes under the neck.
+{% highlight js %}
+//let's draw the beak!
+	ctx.fillStyle = "#FFDE00";
+	ctx.beginPath();
+	ctx.moveTo(17,110);
+	ctx.lineTo(10,118);
+	ctx.lineTo(25,118);
+	ctx.fill(); 
+{% endhighlight %}
 ## Look, Look with Your Special Eyes!
 There is just one last thing we need to add to make our turkey complete.  Eyes!  This should be easy by now, it's just a circle in the middle of it's head!  
 
+{% highlight js %}
+	//to finish it off let's draw the eyes!
+	ctx.fillStyle = "#000000";
+	ctx.beginPath();
+	ctx.arc(29,107,2,0,Math.PI*2,false);
+	ctx.fill();
+{% endhighlight %}
+
+
+# What next?
+- [Animate it!](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Basic_animations)
+- Modify the program so it generates a random color for each feather instead of using the pre-made array in the loop.
+- [Try out a javascript framework!](http://www.createjs.com/)
+- Go eat some Thanksgiving Turkey! (and gravy!)
 
 
 
